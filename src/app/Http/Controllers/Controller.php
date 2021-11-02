@@ -11,13 +11,13 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function requestOk($data) {
+    public function requestResponse($data) {
         return response()->json([
             'data' => $data
         ]);
     }
 
-    public function requestError(\Exception $e) {
+    public function requestResponseError(\Exception $e) {
         return response()->json([
             'error' => [
                 'message' => $e->getMessage(),
