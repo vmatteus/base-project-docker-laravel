@@ -1,0 +1,32 @@
+name: Prescription V2 WorkFlow
+on: push
+jobs:
+  phpunit:
+    runs-on: ubuntu-latest
+    container:
+      image: kirschbaumdevelopment/laravel-test-runner:8.0
+
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: Install composer dependencies
+      working-directory: ./src
+      run: |
+        composer install --no-scripts
+
+    - name: Prepare Laravel Application
+      working-directory: ./src
+      run: |
+        cp .env.ci .env
+        php artisan key:generate
+
+    - name: Run migrate
+      working-directory: ./src
+      run: |
+        php artisan migrate
+
+    - name: Run Testsuite
+      working-directory: ./src
+      run: vendor/bin/phpunit --filter=PrescriptionTest
