@@ -4,7 +4,7 @@ services:
         container_name: ${APP_NAME}
         build: ./docker
         volumes: 
-          - ./src:/opt/${APP_NAME}/src
+          - ./src:/opt/src
         expose: 
           - "8000"
         ports:
