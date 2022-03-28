@@ -35,7 +35,7 @@ return [
     'consumers' => [
         'aConsumerName' => [
             'queue' => 'queueB',
-            'message_processor' => \NeedleProject\LaravelRabbitMq\Processor\CliOutputProcessor::class
+            'message_processor' => \App\Services\CliOutputProcessor::class
         ]
     ]
 ];
