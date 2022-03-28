@@ -1,7 +1,7 @@
-version: '2'
+version: '3.7'
 services:
     base-api:
-        container_name: ${APP_NAME}
+        container_name: 'base-API'
         build: ./docker
         volumes: 
           - ./src:/opt/src
@@ -11,6 +11,19 @@ services:
           - "8000:8000"
         command:
           bash -c "composer install && php artisan serve --host=0.0.0.0 --port=8000"
+        networks: 
+          - inside
+
+    rabbit:
+        image: "rabbitmq:3-management"
+        environment:
+          RABBITMQ_ERLANG_COOKIE: "SKWQOKODSQALRPCLNMEQG"
+          RABBITMQ_DEFAULT_USER: "rabbitmq"
+          RABBITMQ_DEFAULT_PASS: "rabbitmq"
+          RABBITMQ_DEFAULT_VHOST: "/"
+        ports:
+          - "15672:15672"
+          - "5672:5672"
         networks: 
           - inside
 networks: 
