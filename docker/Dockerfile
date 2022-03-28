@@ -1,4 +1,4 @@
-FROM php:8-fpm
+FROM php:7.4-cli
 
 RUN apt-get update && apt-get install -y curl \ 
     vim \
@@ -22,6 +22,7 @@ RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
 RUN docker-php-ext-configure zip
 RUN docker-php-ext-install zip
+RUN docker-php-ext-install sockets
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
