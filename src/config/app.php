@@ -175,6 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        NeedleProject\LaravelRabbitMq\Providers\ServiceProvider::class,
+
     ],
 
     /*

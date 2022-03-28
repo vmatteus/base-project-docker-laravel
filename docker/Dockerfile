@@ -23,6 +23,7 @@ RUN docker-php-ext-enable xdebug
 RUN docker-php-ext-configure zip
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install sockets
+RUN docker-php-ext-install pcntl
 
 RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 RUN php composer-setup.php --install-dir=/usr/local/bin --filename=composer
